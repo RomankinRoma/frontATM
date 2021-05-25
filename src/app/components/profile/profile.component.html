@@ -1,0 +1,52 @@
+
+<div class="container text-white bg-dark">
+
+    <div class="col-1"></div>
+    <div class="col-10">
+
+      <div class="row">
+        <div class="col">
+          <h3 style="text-indent: 3%">{{user.fullname}}</h3>
+          <h5  style="text-indent: 3%">{{user.username}}</h5>
+          <br>
+          <br>
+          <p style="text-indent: 3%">Amount: {{user.amount}}</p>
+
+        </div>
+      </div>
+
+
+      <div class="row">
+          <div class="col">
+
+            <button style="width: 100%" class=" btn btn-dark" (click)="historyOfTransactions()">History transactions</button>
+
+            <ul class="list-group bg-dark" *ngFor="let ts of transActions">
+              <li class="list-group-item bg-dark">{{ts.id}}. {{ ts.type}} : {{ts.value}} <i style="text-indent: 10px">Сумма:</i>  {{ts.amount}} : </li>
+            </ul>
+
+          </div>
+
+<!--        -->
+
+          <div class="col">
+
+            <button style="width: 100%;" class="btn btn-dark" (click)="historyOfTransfers()">History transfers</button>
+
+            <ul class="list-group bg-dark" *ngFor="let ts of transfers ">
+              <li class="list-group-item bg-dark">{{ts.id}} : {{ts.amount}} : {{ts.date | date}}
+
+              </li>
+            </ul>
+          </div>
+      </div>
+
+    </div>
+    <div class="col-1"></div>
+
+
+
+
+</div>
+
+

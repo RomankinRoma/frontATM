@@ -1,0 +1,4 @@
+<app-header *ngIf="!userLog.loggedIn"></app-header>
+<app-header-logged *ngIf="userLog.loggedIn"></app-header-logged>
+<router-outlet></router-outlet>
+<app-footer></app-footer>

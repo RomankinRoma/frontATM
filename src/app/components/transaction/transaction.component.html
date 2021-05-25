@@ -1,0 +1,82 @@
+
+<div class="container">
+    <div class="row">
+
+      <div class="col-3"></div>
+      <div class="col-1 bg-dark"></div>
+      <div class="col-4 bg-dark">
+        <form>
+
+          <br>
+          <br>
+          <br>
+
+          <div class="form-group">
+<!--              <select name="name" [(ngModel)]="value">-->
+
+<!--                <label class="form-group">Выберите что хотите оплатить:</label>-->
+<!--                <option [ngValue]="ts.value" *ngFor="let ts of tsType">{{ts.name}}-->
+<!--                  <br>-->
+
+<!--                  <div *ngIf="ts.value =='Other' " class="form-group">-->
+<!--                    <input [(ngModel)]="pick" name="name" type="text" class="form-control" id="formGroupExampleInput" placeholder="Что хотите оплатить?">-->
+<!--                  </div>-->
+
+<!--                </option>-->
+<!--              </select>-->
+
+            <label>Выберите: </label>
+            <select class="form-control" name="name" [(ngModel)]="select">
+
+              <option  value="ONAY">Onay</option>
+              <option  value="ESP">ЕСП</option>
+              <option  value="FINE">Штраф</option>
+              <option  value="PHONE">Пополнить баланс</option>
+              <option   value="TAX">Налог</option>
+              <option  value="OTHER">Другое</option>
+
+            </select>
+          </div>
+
+          <div *ngIf="select == 'ESP' || select == 'FINE' || select == 'TAX'" class="form-group">
+            <input class="form-control" [(ngModel)]="test" name="number" type="text" placeholder="Введите ИИН">
+          </div>
+
+          <div *ngIf="select == 'ONAY'" class="form-group">
+            <input class="form-control" [(ngModel)]="test" name="number" type="text" placeholder="Введите последние 8 цифр">
+          </div>
+
+          <div *ngIf="select == 'PHONE'" class="form-group">
+            <input class="form-control" [(ngModel)]="test" name="number" type="text" placeholder="Введите номер">
+          </div>
+
+          <div *ngIf="select == 'OTHER'" class="form-group">
+            <input class="form-control" [(ngModel)]="test" name="number" type="text" placeholder="Введите название организации:">
+          </div>
+
+
+<!--          <div class="form-group">-->
+<!--            <input [(ngModel)]="addinfo" name="value" type="text" class="form-control" placeholder="Add info">-->
+<!--          </div>-->
+
+          <div class="form-group">
+            <input [(ngModel)]="amount" name="amount" type="text" class="form-control" placeholder="0т">
+            <label>Комиссия: {{amount* 0.10 | number}}</label>
+          </div>
+
+          <br>
+          <button (click)="send(select,test,amount)" class=" btn btn-primary"> Отправить </button>
+          <br>
+          <br>
+          <br>
+
+        </form>
+      </div>
+      <div class="col-1 bg-dark"></div>
+      <div class="col-3"></div>
+
+    </div>
+
+</div>
+
+<!-- id /  сколько денжат /  -->

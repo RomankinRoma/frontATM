@@ -1,0 +1,42 @@
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-3"></div>
+    <div class="col-1 bg-dark"></div>
+    <div class="col-4 bg-dark">
+      <form>
+
+        <br>
+        <br>
+        <br>
+
+        <div class="form-group">
+          <label for="formGroupExampleInput">Введите номер:</label>
+          <input [(ngModel)]="number" name="number" type="text" class="form-control" id="formGroupExampleInput" placeholder="Номер">
+          <br>
+          <button class="btn-primary btn-outline-warning" (click)="getReceiver(number,amount)">Check user</button>
+          <br>
+          <label class="form-group"   *ngIf="userReceiver != null">Получатель: <span style="text-indent: 10px">{{userReceiver.fullname}}</span></label>
+          <label class="form-group"   *ngIf="userReceiver == null">Получатель не выбран</label>
+        </div>
+
+        <div class="form-group">
+          <label for="formGroupExampleInput2">Введите сумму</label>
+          <input [(ngModel)]="amount" name="amount" type="text" class="form-control" id="formGroupExampleInput2" placeholder="Сумма">
+        </div>
+
+        <button class=" btn bg-primary" (click)="send(userSender.id,userReceiver.id,amount)">Отправить</button>
+
+        <br>
+        <br>
+        <br>
+
+      </form>
+    </div>
+    <div class="col-1 bg-dark"></div>
+    <div class="col-3"></div>
+
+  </div>
+
+</div>

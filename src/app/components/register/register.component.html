@@ -1,0 +1,73 @@
+<div class="container bg-dark" style="opacity: 0.95" >
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="row">
+
+
+    <div class="col-4"></div>
+    <div class="col-4">
+
+
+      <form>
+
+        <div class="form-group">
+          <label  >Имя Фамилия Отчество</label>
+          <input [(ngModel)]="user.fullname" name="fullname" type="email" class="form-control"  placeholder="Enter your Full Name"
+                 min="3"
+                 required="req1"
+
+          >
+        </div>
+
+        <div class="form-group">
+          <label  >Username</label>
+          <input [(ngModel)]="user.username" name="username" type="email" class="form-control"  placeholder="Username"
+
+                 min="3"
+                 required="req2"
+          >
+        </div>
+
+        <div class="form-group">
+          <label  >Введите номер:</label>
+          <input [(ngModel)]="user.phoneNumber" name="phoneNumber" type="number" class="form-control"  placeholder="Enter phone number"
+
+                 pattern="[0-9]{11}"
+                 required="req3"
+          >
+          <small id="emailHelp" class="form-text text-muted">We'll never share your phone number with anyone else.</small>
+        </div>
+
+        <div class="form-group">
+          <label >Password</label>
+          <input [(ngModel)]="user.password" name="password" type="password" class="form-control" placeholder="Password"
+
+                 min="5"
+                 required="req4"
+          >
+        </div>
+
+        <div class="form-group">
+          <label > Repeat password</label>
+          <input  [(ngModel)]="password2" [ngModelOptions]="{standalone: true}" type="password" class="form-control"  placeholder="Password"
+
+                  min="5"
+                  required="req4"
+          >
+        </div>
+
+        <button (click)="create(user,password2)" style="float: right" type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+    </div>
+    <div class="col-4"></div>
+
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+
+</div>

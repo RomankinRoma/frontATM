@@ -4,6 +4,9 @@ import {Router} from '@angular/router';
 import {host} from '@angular-devkit/build-angular/src/test-utils';
 import {timer} from 'rxjs';
 import {compareNumbers} from '@angular/compiler-cli/src/diagnostics/typescript_version';
+import {HttpResponse} from '@angular/common/http';
+import * as http from 'http';
+import {first} from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -15,11 +18,10 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
 
-  notify: string = "We'll never share your account with anyone else.";
+  notify: string = 'We\'ll never share your account with anyone else.';
 
   time: number;
   interval;
-
 
   constructor(private userService: UserService, private router: Router) {
   }
@@ -27,27 +29,14 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // tslint:disable-next-line:typedef
   login(username: string, password: string) {
-    this.userService.login(username, password).subscribe(res => {
-      this.userService.user = res;
-      if (res != null){
-        this.notify = " We'll never share your account with anyone else."
-        this.userService.loggedIn = true;
-        console.log(this.userService.user);
-        console.log(this.userService.loggedIn);
-        this.router.navigate(['profile']);
-      }else {
-        this.notify = "Не правильный пароль или пользователь не найден!";
-
-        setTimeout(()=>
-
-        {
-          console.log("Идет таймер 5 сек")
-          this.notify = " We'll never share your account with anyone else.";
-        },5000)
-
-      }
-
+    this.userService.auth(username, password).subscribe(value => {
+      localStorage.setItem('token', value.headers.get('authorization'));
+      this.userService.getUserByUsername(username).subscribe(res => {
+          this.userService.user = res;
+        }
+      );
     });
   }
 

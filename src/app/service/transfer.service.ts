@@ -14,35 +14,35 @@ export class TransferService {
   }
 
   createTransfer(transfer: TransferModel): Observable<any> {
-    return this.http.post('/transfers/create', transfer);
+    return this.http.post('/transfer/create', transfer);
   }
 
   getUserTransfers(id: number): Observable<any> {
-    return this.http.get(`/transfers/get/sender?senderId=${id}`);
+    return this.http.get(`/transfer/get/sender/${id}`);
   }
 
   getAllTransfers(): Observable<any>{
-    return this.http.get(`/transfers/all`);
+    return this.http.get(`/transfer/all`);
   }
 
   // @ts-ignore
   getUserTransfersByReceiver(senderId: number, receiverId: number): Observable<any> {
-    return this.http.get(`/transfers/get?senderId=${senderId}&receiverId=${receiverId}`);
+    return this.http.get(`/transfer/get?sender=${senderId}&receiver=${receiverId}`);
   }
 
-  getUserTransfersByAmount(senderId: number, amount: number): Observable<any> {
-    return this.http.get(`/transfers/get?senderId=${senderId}&amount=${amount}`);
+  getUserTransfersByAmount(sender: number): Observable<any> {
+    return this.http.get(`/transfer/get/sender/${sender}`);
   }
 
   getUserTransfersByDateAfter(id: number, date: string): Observable<any> {
-    return this.http.get(`/transfers/get/dateAfter?senderId=${id}&date=${date}`);
+    return this.http.get(`/transfer/get/dateAfter?senderId=${id}&date=${date}`);
   }
 
   getUserTransfersByDateBefore(id: number, date: string): Observable<any> {
-    return this.http.get(`/transfers/get/dateBefore?senderId=${id}&date=${date}`);
+    return this.http.get(`/transfer/get/dateBefore?senderId=${id}&date=${date}`);
   }
 
   deleteTransaction(id: number): Observable<any> {
-    return this.http.delete(`/transfers/all/${id}`);
+    return this.http.delete(`/transfer/all/${id}`);
   }
 }

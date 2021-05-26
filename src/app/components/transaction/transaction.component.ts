@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../service/user.service';
 import {TransferService} from '../../service/transfer.service';
 import {TransactionService} from '../../service/transaction.service';
@@ -14,7 +14,8 @@ import {Router} from '@angular/router';
 })
 export class TransactionComponent implements OnInit {
 
-  constructor(private userServe: UserService, private tsAction: TransactionService,private router: Router) { }
+  constructor(private userServe: UserService, private tsAction: TransactionService, private router: Router) {
+  }
 
 
   // tsType: TransactionType[] = [
@@ -40,17 +41,15 @@ export class TransactionComponent implements OnInit {
   addinfo: string;
   commissionForPage: number = 0;
 
-  send(type: string, value: string, amount: number){
+  send(type: string, value: string, amount: number) {
     this.commissionForPage = amount * 0.10;
-    let commission = amount * 0.10;
-    let transaction = new TransactionModel(this.payerId,amount,type,value,commission);
+    let transaction = new TransactionModel(this.payerId, amount, type);
 
     console.log(type);
     console.log(value);
 
-    this.tsAction.createTransaction(transaction).subscribe(res =>
-      {
-
+    this.tsAction.createTransaction(transaction).subscribe(res => {
+        this.userServe.user.balance = this.userServe.user.balance - transaction.amount;
         console.log(res);
         this.router.navigate(['checkpage']);
       }

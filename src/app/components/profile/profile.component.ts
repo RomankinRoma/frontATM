@@ -11,9 +11,10 @@ import {TransactionModel} from '../../Models/transaction.model';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit{
+export class ProfileComponent implements OnInit {
 
-  constructor(private userLog: UserService,private transferServ: TransferService,private tsActionServe: TransactionService) { }
+  constructor(private userLog: UserService, private transferServ: TransferService, private tsActionServe: TransactionService) {
+  }
 
   transfers: TransferModel[];
   transActions: TransactionModel[];
@@ -31,30 +32,26 @@ export class ProfileComponent implements OnInit{
   // }
 
 
-
   user = this.userLog.user;
   sTransaction: '';
   sTransfer: '';
 
-  historyOfTransfers(){
+  historyOfTransfers() {
 
-    this.transferServ.getAllTransfers().subscribe(res=>
-    {
+    this.transferServ.getUserTransfers(this.user.id).subscribe(res => {
       this.transfers = res;
       console.log(this.transfers);
       this.searchtf = true;
-    })
+    });
   }
 
 
-
-  historyOfTransactions(){
-    this.tsActionServe.getUserTransactions(this.user.id).subscribe(res =>
-    {
+  historyOfTransactions() {
+    this.tsActionServe.getUserTransactions(this.user.id).subscribe(res => {
       this.transActions = res;
       console.log(this.transActions);
       this.searchts = true;
-    })
+    });
   }
 
   ngOnInit(): void {

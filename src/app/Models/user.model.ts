@@ -5,9 +5,9 @@ export  class User {
 
   password: string;
 
-  fullname: string;
+  fullName: string;
 
-  amount: number;
+  balance: number;
 
   phoneNumber: string;
 
@@ -16,8 +16,8 @@ export  class User {
     this.id = id;
     this.username = username;
     this.password = password;
-    this.fullname = fullname;
-    this.amount = amount;
+    this.fullName = fullname;
+    this.balance = amount;
     this.phoneNumber = phoneNumber;
   }
 }

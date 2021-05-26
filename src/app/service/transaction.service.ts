@@ -14,26 +14,16 @@ export class TransactionService {
   }
 
   createTransaction(transaction: TransactionModel): Observable<any> {
-    return this.http.post('/transactions/create', transaction);
+    return this.http.post('/transaction/create', transaction);
   }
 
   getUserTransactions(id: number): Observable<any> {
-    return this.http.get(`/transactions/all?id=${id}`);
+    return this.http.get(`/transaction/get/user/${id}`);
   }
 
-  getUserTransaction(id: number): Observable<any> {
-    return this.http.get(`/transactions/all/${id}`);
-  }
 
   deleteTransaction(id: number): Observable<any> {
-    return this.http.delete(`/transactions/${id}`);
+    return this.http.delete(`/transaction/${id}`);
   }
 
-  getUserTransactionsByType(id: number, type: string): Observable<any> {
-    return this.http.get(`/transactions/all/type?id=${id}&type=${type}`);
-  }
-
-  getUserTransactionsByAmount(id: number, amount: number): Observable<any> {
-    return this.http.get(`/transactions/all/type?id=${id}&amount=${amount}`);
-  }
 }

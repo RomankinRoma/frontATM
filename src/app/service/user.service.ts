@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from '../Models/user.model';
+import {tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ export class UserService {
 
   loggedIn = false;
   user = null;
+
   constructor(private http: HttpClient) {
   }
 
@@ -25,6 +27,10 @@ export class UserService {
     return this.http.get(`/users/all/${id}`);
   }
 
+  getUserByUsername(username: string): Observable<any> {
+    return this.http.get(`/users/get/username?username=${username}`);
+  }
+
   updateUser(user: User): Observable<any> {
     return this.http.post('/users/update', user);
   }
@@ -33,8 +39,11 @@ export class UserService {
     return this.http.get(`/users/login?username=${username}&password=${password}`);
   }
 
-  getByPhoneNumber(phoneNumber:string):Observable<any>{
-    return this.http.get(`/users/phoneNumber?phoneNumber=${phoneNumber}`);
+  getByPhoneNumber(phoneNumber: string): Observable<any> {
+    return this.http.get(`/users/get/phone?phone=${phoneNumber}`);
   }
 
+  auth(username: string, password: string): Observable<any> {
+    return this.http.get(`/users/auth?username=${username}&password=${password}`, {observe: 'response' as 'body'});
+  }
 }

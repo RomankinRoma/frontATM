@@ -1,19 +1,15 @@
 export class TransactionModel {
 
   id: number;
-  payerId: number;
+  userId: number;
   amount: number;
-  type: string;
+  service: string;
   createdDate: Date;
-  commission: number;
-  value: string;
 
 
-  constructor(payerId: number, amount: number, type: string, value: string , commission: number) {
-    this.payerId = payerId;
+  constructor(payerId: number, amount: number, type: string) {
+    this.userId = payerId;
     this.amount = amount;
-    this.type = type;
-    this.value = value;
-    this.commission = commission;
+    this.service = type;
   }
 }

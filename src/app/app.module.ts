@@ -15,11 +15,12 @@ import { TransactionComponent } from './components/transaction/transaction.compo
 import { TransferBlockComponent } from './components/elements/transfer-block/transfer-block.component';
 import { TransactionBlockComponent } from './components/elements/transaction-block/transaction-block.component';
 import { ProfileBlockComponent } from './components/elements/profile-block/profile-block.component';
-import { HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import { HeaderLoggedComponent } from './components/header-logged/header-logged.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { QuestionIconComponent } from './components/elements/question-icon/question-icon.component';
+import {TokenInterceptor} from './service/token.interceptor';
 
 
 @NgModule({
@@ -47,7 +48,7 @@ import { QuestionIconComponent } from './components/elements/question-icon/quest
     HttpClientModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [ { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

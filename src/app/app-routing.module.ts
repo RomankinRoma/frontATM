@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: 'transaction', component: TransactionComponent, canActivate: [AuthguardGuard]},
   {path: 'transfer', component: TransferComponent, canActivate: [AuthguardGuard]},
   {path: 'profile' , component: ProfileComponent, canActivate: [AuthguardGuard]},
-  {path: 'checkpage', component: EmptySpaceComponent,canActivate: [AuthguardGuard]}
+  {path: 'checkpage', component: EmptySpaceComponent, canActivate: [AuthguardGuard]}
 ];
 
 @NgModule({
